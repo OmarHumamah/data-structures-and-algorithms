@@ -23,3 +23,5 @@ To run your tests
 ### table of content
 
 * [array-reverse](code-challenge-401/README.md)
+* [array-insert-shift.](code-challenge-401/code02/README.md)
+
