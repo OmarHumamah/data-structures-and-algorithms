@@ -24,4 +24,7 @@ To run your tests
 
 * [array-reverse](code-challenge-401/README.md)
 * [array-insert-shift.](code-challenge-401/code02/README.md)
+* [binary-search](code-challenge-401/code03/README.md)
+* [sum-of-matrix](https://docs.google.com/spreadsheets/d/11wgBlzJV9kaZISAsI-InIggcqnUlR3LLWqSdoSmgA5U/edit#gid=2115233320)
+
 
