@@ -12,7 +12,7 @@ class LinkedList {
     this.head = null;
   }
 
-  insert(value) {
+  append(value) {
     let newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
@@ -25,24 +25,6 @@ class LinkedList {
     }
   }
 
-  includes(value) {
-    let currentNode = this.head;
-    while (currentNode !== null) {
-      if (currentNode.value == value) {
-        return true;
-      }
-      return false;
-    }
-  }
-  toString() {
-    let string = "";
-    let currentNode = this.head;
-    while (currentNode !== null) {
-      string = `${currentNode.value} --> Null`;
-      currentNode = currentNode.next;
-    }
-    return string;
-  }
   insertBefore(beforeNodeValue, value) {
     if (!beforeNodeValue || !value)
       throw new Error(`Invalid input ${beforeNodeValue && value}`);
