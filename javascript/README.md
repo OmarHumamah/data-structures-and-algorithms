@@ -21,7 +21,7 @@ etc ..
 
 ## Approach & Efficiency
 using `Class` to create Node and to create linkedList
-    > Big(1)
+    > Big(1)  
 
 ## API
 1. `insert method`: if the the head is null add the new value to new node, otherwise add the new value to next node 
