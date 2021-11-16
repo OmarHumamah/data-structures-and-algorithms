@@ -43,6 +43,29 @@ class LinkedList {
     return currentNode.value;
   }
 
+  zipLists(firstLinkedList, secondLinkedList) {
+    let zippedLinkedList = new LinkedList();
+    let firstPointer = firstLinkedList.head;
+    let secondPointer = secondLinkedList.head;
+    if (!firstPointer) {
+      return console.log("1st LInked List is empty");
+    } else if (!secondPointer) {
+      return console.log("2nd LInked List is empty");
+    }
+
+    while (firstPointer || secondPointer) {
+      if (firstPointer) {
+        zippedLinkedList.append(firstPointer.value);
+        firstPointer = firstPointer.next;
+      }
+      if (secondPointer) {
+        zippedLinkedList.append(secondPointer.value);
+        secondPointer = secondPointer.next;
+      }
+    }
+
+    return zippedLinkedList;
+  }
 }
 
-module.exports = LinkedList
+module.exports = LinkedList;
