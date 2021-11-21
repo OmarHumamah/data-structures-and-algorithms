@@ -61,7 +61,13 @@ class BinaryTree {
       return outputArray;
     }
   }
-  
+
+  findMaxValue(none) {
+    let arr = none.inOrder();
+    let maxValue = Math.max(...arr);
+
+    return maxValue;
+  }
 }
 
 module.exports = BinaryTree;
