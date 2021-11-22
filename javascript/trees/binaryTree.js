@@ -68,6 +68,7 @@ class BinaryTree {
 
     return maxValue;
   }
+
 }
 
 module.exports = BinaryTree;
