@@ -6,7 +6,7 @@ const BinaryTree = require("./binaryTree");
 class BinarySearchTree extends BinaryTree {
   add(value) {
     let currentNode;
-    if (Number.isInteger(value)) {
+    if (Number.isInteger(value) || value) {
       currentNode = new Node(value);
     } else {
       return null;
