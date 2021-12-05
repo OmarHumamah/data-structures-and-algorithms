@@ -69,6 +69,17 @@ class BinaryTree {
     return maxValue;
   }
 
+  sumOfOddNum(none) {
+    let arr = none.inOrder();
+    let oddArr = [];
+    arr.forEach(e => {
+      if(e%2!== 0) oddArr.push(e)
+    }); 
+    let sum = oddArr.reduce((acc,x)=>{
+      return acc + x
+      },0);
+    return sum;
+  }
 }
 
 module.exports = BinaryTree;
