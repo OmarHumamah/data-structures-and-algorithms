@@ -13,4 +13,14 @@ describe("Node Constructor", () => {
     let maxValue = tree.findMaxValue(tree);
     expect(maxValue).toEqual(9);
   });
+
+  it(" can find sum of odd values of a tree", () => {
+    let tree = new BinarySearchTree();
+    tree.add(2);
+    tree.add(9);
+    tree.add(1);
+    tree.add(5);
+    let sumOfOddNum = tree.sumOfOddNum(tree);
+    expect(sumOfOddNum).toEqual(15);
+  });
 });
