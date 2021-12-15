@@ -1,10 +1,10 @@
 "use strict";
 
-const HashMap = require("../hashTable");
+const { HashedTable } = require("../hashTable");
 
 describe("hashTable test", () => {
   it("Adding a key/value to your hashtable results in the value being in the data structure", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
 
     myHash.add("omar", "1");
     myHash.add("ahmed", "075");
@@ -14,20 +14,30 @@ describe("hashTable test", () => {
     myHash.add("damen", "153");
 
     expect(myHash.map).toEqual([
-      undefined,
-      undefined,
-      undefined,
-      [{ naser: "759" }, { damen: "153" }],
-      [{ samer: "599" }],
-      [{ rakan: "4569" }],
-      undefined,
-      undefined,
-      undefined,
-      [{ omar: "1" }, { ahmed: "075" }],
+      ,
+      ,
+      ,
+      {
+        head: {
+          next: { next: null, value: { damen: "153" } },
+          value: { naser: "759" },
+        },
+      },
+      { head: { next: null, value: { samer: "599" } } },
+      { head: { next: null, value: { rakan: "4569" } } },
+      ,
+      ,
+      ,
+      {
+        head: {
+          next: { next: null, value: { ahmed: "075" } },
+          value: { omar: "1" },
+        },
+      },
     ]);
   });
   it("Retrieving based on a key returns the value stored", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
 
     myHash.add("omar", "1");
     myHash.add("ahmed", "075");
@@ -36,10 +46,10 @@ describe("hashTable test", () => {
     myHash.add("rakan", "4569");
     myHash.add("damen", "153");
 
-    expect(myHash.get("rakan")).toEqual([{ rakan: "4569" }]);
+    expect(myHash.get("rakan")).toEqual("4569");
   });
   it("Successfully returns null for a key that does not exist in the hashtable", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
 
     myHash.add("omar", "1");
     myHash.add("ahmed", "075");
@@ -48,10 +58,10 @@ describe("hashTable test", () => {
     myHash.add("rakan", "4569");
     myHash.add("damen", "153");
 
-    expect(myHash.contain("mishmish")).toBe(null);
+    expect(myHash.contains("mishmish")).toBe(undefined);
   });
   it("Successfully handle a collision within the hashtable", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
 
     myHash.add("omar", "1");
     myHash.add("ahmed", "075");
@@ -60,10 +70,10 @@ describe("hashTable test", () => {
     myHash.add("rakan", "4569");
     myHash.add("damen", "153");
 
-    expect(myHash.get("ahmed")).toEqual([{ omar: "1" }, { ahmed: "075" }]);
+    expect(myHash.get("omar")).toEqual("1");
   });
   it("Successfully retrieve a value from a bucket within the hashtable that has a collision", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
 
     myHash.add("omar", "1");
     myHash.add("ahmed", "075");
@@ -72,10 +82,10 @@ describe("hashTable test", () => {
     myHash.add("rakan", "4569");
     myHash.add("damen", "153");
 
-    expect(myHash.get("ahmed")).toEqual([{ omar: "1" }, { ahmed: "075" }]);
+    expect(myHash.get("omar")).toEqual("1");
   });
   it("Successfully hash a key to an in-range value", () => {
-    const myHash = new HashMap(10);
+    const myHash = new HashedTable(10);
     let hash = myHash.hash("ahmed");
     let range = hash >= 0 && hash <= 10;
     expect(typeof hash).toBe("number");
