@@ -1,38 +1,102 @@
 "use strict";
 
-class HashMap {
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  add(value) {
+    const node = new Node(value);
+    if (!this.head) {
+      this.head = node;
+      return;
+    }
+
+    let current = this.head;
+    while (current.next) {
+      current = current.next;
+    }
+    current.next = node;
+  }
+
+  values() {
+    let values = [];
+    let current = this.head;
+    while (current) {
+      values.push(current.value);
+      current = current.next;
+    }
+    return values;
+  }
+}
+
+class HashedTable {
   constructor(size) {
     this.size = size;
     this.map = new Array(size);
   }
+
+  hash(key) {
+    let hash =
+      (key.split("").reduce((acc, char) => {
+        return acc + char.charCodeAt(0);
+      }, 0) *
+        599) %
+      this.size;
+
+    return hash;
+  }
+
   add(key, value) {
-    const hash = this.hash(key);
-
-    const entry = { [key]: value };
-
+    let hash = this.hash(key);
     if (!this.map[hash]) {
-      this.map[hash] = new Array();
+      this.map[hash] = new LinkedList();
     }
 
-    this.map[hash].push(entry);
+    let bucket = { [key]: value };
+    this.map[hash].add(bucket);
   }
 
   get(key) {
-    const hash = this.hash(key);
-
-    return this.map[hash];
+    let hash = this.hash(key);
+    if (this.map[hash]) {
+      let pointer = this.map[hash].head;
+      while (pointer) {
+        if (pointer.value[key]) {
+          return pointer.value[key];
+        }
+        pointer = pointer.next;
+      }
+    } else {
+      return "empty";
+    }
   }
 
-  contain(key) {
-    const hash = this.hash(key);
-    return this.map[hash][0].hasOwnProperty(key)?true:null;
-  }
-
-  hash(key) {
-    const assciSum = key.split("").reduce((p, n) => p + n.charCodeAt(0), 0);
-    const withPrime = assciSum * 599;
-    return withPrime % this.size;
+  contains(key) {
+    let hash = this.hash(key);
+    if (this.map[hash]) {
+      let pointer = this.map[hash].head;
+      while (pointer) {
+        if (pointer.value[key]) {
+          return true;
+        }
+        pointer = pointer.next;
+      }
+    } else {
+      return false;
+    }
   }
 }
 
-module.exports = HashMap;
+module.exports = {
+  HashedTable,
+  LinkedList,
+  Node,
+};
